@@ -1,23 +1,26 @@
 use std::net::TcpStream;
-use std::io::{Read, Error};
-use std::result::{Result};
+use std::io::{Read, Result};
+use tiny_web_server::request;
 
-fn pred(c : &Result<u8, Error>) -> bool {
-    match c {
-        &Ok(ch) => { ch != ('\n' as u8) }
-        &Err(_) => { false }
-    }
-}
+fn read_line(stream : TcpStream) -> String {
+    let not_new_line = |c : &Result<u8>|
+        match c {
+            &Ok(ch) => { ch != ('\n' as u8) }
+            &Err(_) => { false }
+        };
 
-fn read_header(stream : TcpStream) -> String {
     let mut buffer = String::new();
-    for s in stream.bytes().take_while(|ch| pred(ch)) {
+    for s in stream.bytes().take_while(not_new_line) {
         buffer.push(char::from(s.unwrap()));
     }
     return buffer;
 }
 
+fn read_request(stream : TcpStream) -> request::Request {
+    return request::parse(read_line(stream));
+}
+
 pub fn handle_client(stream : TcpStream) {
-    let header = read_header(stream);
-    println!("{}", header);
+    let header = read_request(stream);
+    println!("{:?}", header);
 }
