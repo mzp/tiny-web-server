@@ -16,3 +16,6 @@ docker-compose build
 |:lipstick:         |improve the format/structure of the code|
 |:memo:             |improve document                        |
 |:package:          |improve cargo settings                  |
+
+## :copyright: License
+MIT License
