@@ -1,0 +1,5 @@
+[package]
+
+name = "tiny-web-server"
+version = "0.1.0"
+authors = [ "mzp <mzpppp@gmail.com>" ]
