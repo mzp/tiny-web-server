@@ -6,3 +6,13 @@ Tiny http server serve static files to public it for other machines at same netw
 ```
 docker-compose build
 ```
+
+## :+1: Commit symbol
+
+|emoji              |mean                                    |
+|-------------------|----------------------------------------|
+|:wrench:           |improve development environment         |
+|:sparkles:         |add new feature                         |
+|:lipstick:         |improve the format/structure of the code|
+|:memo:             |improve document                        |
+|:package:          |improve cargo settings                  |
