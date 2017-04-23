@@ -8,15 +8,22 @@ pub enum Status {
 }
 
 #[derive(Debug)]
-pub struct Response<'a> {
+pub struct Response {
     pub status : Status,
-    pub body : &'a [u8]
+    pub body : String
 }
 
-pub fn ok<'a>(body : &'a String) -> Response<'a> {
+pub fn ok(body : String) -> Response {
     Response{
         status: Status::OK,
-        body: body.as_bytes()
+        body: body
+    }
+}
+
+pub fn not_found() -> Response {
+    Response{
+        status: Status::NotFound,
+        body: "not found".to_string()
     }
 }
 
@@ -31,5 +38,5 @@ pub fn write(stream : &mut TcpStream, response : Response) {
         Status::NotFound => { write_line(stream, b"HTTP/1.1 404 Not found") }
     }
     write_line(stream, b"");
-    write_line(stream, response.body);
+    write_line(stream, response.body.as_bytes());
 }
