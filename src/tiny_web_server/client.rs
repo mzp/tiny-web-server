@@ -1,8 +1,8 @@
 use std::net::TcpStream;
-use std::io::{Read, Result};
+use std::io::{Read, Write, Result};
 use tiny_web_server::request;
 
-fn read_line(stream : TcpStream) -> String {
+fn read_line(stream : &TcpStream) -> String {
     let not_new_line = |c : &Result<u8>|
         match c {
             &Ok(ch) => { ch != ('\n' as u8) }
@@ -16,11 +16,20 @@ fn read_line(stream : TcpStream) -> String {
     return buffer;
 }
 
-fn read_request(stream : TcpStream) -> request::Request {
+fn read_request(stream : &TcpStream) -> request::Request {
     return request::parse(read_line(stream));
 }
 
-pub fn handle_client(stream : TcpStream) {
-    let header = read_request(stream);
+fn write_line(stream : &mut TcpStream, line : String) {
+    let _ = stream.write(line.as_bytes());
+    let _ = stream.write(b"\r\n");
+}
+
+pub fn handle_client(mut stream : TcpStream) {
+    let header = read_request(&stream);
     println!("{:?}", header);
+
+    write_line(&mut stream, "HTTP/1.1 200 OK".to_string());
+    write_line(&mut stream, "".to_string());
+    write_line(&mut stream, header.path);
 }

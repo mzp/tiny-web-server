@@ -1,7 +1,7 @@
 #[derive(Debug)]
 pub struct Request {
-    method : String,
-    path : String
+    pub method : String,
+    pub path : String
 }
 
 pub fn parse(line : String) -> Request {
