@@ -20,6 +20,13 @@ pub fn ok<'a>(body : &'a String) -> Response<'a> {
     }
 }
 
+pub fn not_found() -> Response<'static> {
+    Response{
+        status: Status::NotFound,
+        body: b"not found"
+    }
+}
+
 fn write_line(stream : &mut TcpStream, line : &[u8]) {
     let _ = stream.write(line);
     let _ = stream.write(b"\r\n");
