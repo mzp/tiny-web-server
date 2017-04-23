@@ -1,0 +1,13 @@
+version: "2"
+services:
+  app:
+    build:
+      context: ./config/docker
+      dockerfile: Dockerfile.app
+    command: echo "hello world"
+    volumes:
+      - cargo-data:/root/.cargo
+      - .:/work
+volumes:
+  cargo-data:
+    driver: local
