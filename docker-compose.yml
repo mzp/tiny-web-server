@@ -4,7 +4,9 @@ services:
     build:
       context: ./config/docker
       dockerfile: Dockerfile.app
-    command: echo "hello world"
+    command: cargo run
+    ports:
+      - 8423:8423
     volumes:
       - cargo-data:/root/.cargo
       - .:/work
