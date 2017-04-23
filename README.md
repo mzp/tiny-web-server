@@ -14,6 +14,8 @@ docker-compose build
 |:wrench:           |improve development environment         |
 |:sparkles:         |add new feature                         |
 |:lipstick:         |improve the format/structure of the code|
+|:hocho:            |split file to improve structure of the code|
+|:truck:            |move file to improve structure of the code|
 |:memo:             |improve document                        |
 |:package:          |improve cargo settings                  |
 
