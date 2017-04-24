@@ -4,3 +4,4 @@ mod response;
 mod client;
 
 mod file_handler;
+mod dir_handler;

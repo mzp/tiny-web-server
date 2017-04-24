@@ -15,6 +15,6 @@ pub fn parse(line : String) -> Request {
     Request { method: method, path: path }
 }
 
-pub fn path(request : Request) -> PathBuf {
+pub fn path(request : &Request) -> PathBuf {
     current_dir().unwrap().join(".".to_string() + &request.path)
 }

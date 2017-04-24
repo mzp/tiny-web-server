@@ -1,6 +1,6 @@
 use std::net::TcpStream;
 use std::io::{Read, Result};
-use tiny_web_server::{request, response, file_handler};
+use tiny_web_server::{request, response, file_handler, dir_handler};
 
 fn read_line(stream : &TcpStream) -> String {
     let not_new_line = |c : &Result<u8>|
@@ -25,7 +25,8 @@ pub fn handle_client(mut stream : TcpStream) {
     println!("{:?}", request);
 
     let response =
-        file_handler::handle(request)
+        file_handler::handle(&request)
+        .or_else(|| dir_handler::handle(&request))
         .unwrap_or_else(|| response::not_found());
 
     response::write(&mut stream, response);

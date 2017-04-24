@@ -10,7 +10,7 @@ fn read_all(path : PathBuf) -> Result<String> {
         .map(|_| buffer);
 }
 
-pub fn handle<'a>(request : request::Request) -> Option<response::Response> {
+pub fn handle(request : &request::Request) -> Option<response::Response> {
     read_all(request::path(request))
         .map(response::ok)
         .ok()
