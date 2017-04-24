@@ -1,8 +1,7 @@
-use std::env::current_dir;
 use std::fs::File;
 use std::io::{Read, Result};
-use std::path::PathBuf;
 use tiny_web_server::{request, response};
+use std::path::PathBuf;
 
 fn read_all(path : PathBuf) -> Result<String> {
     let mut buffer = String::new();
@@ -11,12 +10,8 @@ fn read_all(path : PathBuf) -> Result<String> {
         .map(|_| buffer);
 }
 
-fn resolve(path : String) -> PathBuf {
-    current_dir().unwrap().join(".".to_string() + &path)
-}
-
 pub fn handle<'a>(request : request::Request) -> Option<response::Response> {
-    read_all(resolve(request.path))
+    read_all(request::path(request))
         .map(response::ok)
         .ok()
 }
