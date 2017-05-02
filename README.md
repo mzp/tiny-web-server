@@ -3,12 +3,12 @@ Tiny http server serve static files to public it for other machines at same netw
 
 ## :star: Usage
 
-```
+```sh
 # macOS
 curl -L -o tiny-web-server https://github.com/mzp/tiny-web-server/releases/download/1.0.0/tiny-web-server-x86_64-apple-darwin
 
 # linux
-curl -L -o tiny-web-server https://github.com/mzp/tiny-web-server/releases/download/1.0.0/tiny-web-server-x86_64-apple-darwin
+curl -L -o tiny-web-server https://github.com/mzp/tiny-web-server/releases/download/1.0.0/tiny-web-server-x86_64-x86_64-unknown-linux-gnu
 
 chmod a+x tiny-web-server
 ./tiny-web-server
