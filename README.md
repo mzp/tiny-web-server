@@ -1,6 +1,21 @@
 # :globe_with_meridians: tiny web server
 Tiny http server serve static files to public it for other machines at same network.
 
+## :star: Usage
+
+```
+# macOS
+curl -L -o tiny-web-server https://github.com/mzp/tiny-web-server/releases/download/1.0.0/tiny-web-server-x86_64-apple-darwin
+
+# linux
+curl -L -o tiny-web-server https://github.com/mzp/tiny-web-server/releases/download/1.0.0/tiny-web-server-x86_64-apple-darwin
+
+chmod a+x tiny-web-server
+./tiny-web-server
+```
+
+and access http://localhost:8423
+
 ## :wrench: Build
 
 ```
